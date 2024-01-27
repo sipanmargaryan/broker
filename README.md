@@ -11,6 +11,7 @@ To build the project
     make
 
 To run the migrations
+    
     make migrate
 
 To run the project
