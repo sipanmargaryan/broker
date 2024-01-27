@@ -20,7 +20,7 @@ To run the project
 
 To jump into container migrate database
 
-    $ make shell
+    make shell
 
 To stop running containers
 
