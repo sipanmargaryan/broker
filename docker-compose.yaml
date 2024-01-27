@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: broker_root
+      MYSQL_DATABASE: broker
+      MYSQL_USER: broker
+      MYSQL_PASSWORD: broker111
+      MYSQL_USER_CREATE_DATABASE: 'yes'
+    ports:
+      - "3306:3306"
+  broker:
+    container_name: broker
+    image: broker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python3 manage.py runserver 0:8000
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
